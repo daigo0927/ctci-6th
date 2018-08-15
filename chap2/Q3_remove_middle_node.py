@@ -2,7 +2,6 @@
 この問題が難しいのは、中間ノードだけ与えられたときにそれより前のノードが見えない点である。したがって中間ノードを削除するには中身自体を逐次書き換えなければいけない。
 """
 from linkedlist import Node
-from copy import deepcopy as copy
 
 
 def remove_this_node(node):
