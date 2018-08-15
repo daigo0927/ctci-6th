@@ -17,18 +17,18 @@ class Node:
 
     def printls(self):
         n = self
-        while(1):
-            if n.next == None:
-                print(n.data)
-                break
+        while n.next != None:
             print(n.data, end=", ")
             n = n.next
+        print(n.data)
 
     def get_Nth_node(self, N):
         """
         配列ライクにN番目のノードを返す(データではない)
         """
         n = self
+        if N < 0:
+            print("Index out of bound. return the first node")
         for _ in range(N):
             if n.next == None:
                 print("Index out of bound. return the last node")
