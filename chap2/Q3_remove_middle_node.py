@@ -24,7 +24,7 @@ if __name__ == "__main__":
     ls.appendToTail(5)
     ls.appendToTail(6)
     ls.appendToTail(7)
-    ls.appendToTail(8)  # opps
+    ls.appendToTail(8)
     ls.appendToTail(9)
     ls.appendToTail(10)
     ls.printls()

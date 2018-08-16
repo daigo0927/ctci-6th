@@ -7,13 +7,20 @@ class Node:
         self.data = d
         self.next = None  # odeを受け渡すようにすると多分ポインター参照になるらし
 
-    def appendToTail(self, d):
+    def appendToTail(self, d=None):
         end = Node(d)  # あたらしいノード
         n = self
         # 一番終端のノードまで移動する必要がある。
         while (n.next != None):
             n = n.next
         n.next = end
+
+    def appendNodeToTail(self, node):
+        n = self
+        # 一番終端のノードまで移動する必要がある。
+        while (n.next != None):
+            n = n.next
+        n.next = node
 
     def printls(self):
         n = self
@@ -38,11 +45,15 @@ class Node:
 
     def remove_Nth_node(self, N):
         if N == 0:
-            self = self.next
-
-        prerm = self.get_Nth_node(N - 1)  # 削除したいノードの一つ前のリンクを書き換える必要がある
-        prerm.next = self.get_Nth_node(N).next
-        #. -> . ->(この矢印を書き換える必要がある) .(削除したい) -> .
+            print(
+                "there is a bug. please use \"get_Nth_node(1)\" to remove the first Node.")
+            # ここにバグが有ってなぜか1つ目の自分自身のポインターが書き換わらない
+            n = self
+            n = n.next
+        else:
+            prerm = self.get_Nth_node(N - 1)  # 削除したいノードの一つ前のリンクを書き換える必要がある
+            prerm.next = self.get_Nth_node(N).next
+            #. -> . ->(この矢印を書き換える必要がある) .(削除したい) -> .
 
 
 if __name__ == "__main__":
