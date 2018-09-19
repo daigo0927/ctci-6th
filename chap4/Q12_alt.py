@@ -6,12 +6,12 @@ def count_paths_with_sum(node, sum_tar, sum_run = 0, count_paths = dict()):
     """
     Args:
     - TreeNode node: node of a tree
-    - int sum_tar: sum of the target path
+    - int sum_tar: target sum
     - int sum_run: sum of the running range
     - dictionary<int, int> count_paths: map from paths sum to count
 
     Returns:
-    - int: 
+    - int: total number of paths with target
     """
     if node is None:
         return 0
