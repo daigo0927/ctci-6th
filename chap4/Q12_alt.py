@@ -2,49 +2,60 @@ import os, sys
 sys.path.append(os.pardir)
 from tree import TreeNode
 
-def count_paths_with_sum(root, sum_tar):
+def count_paths_with_sum(node, sum_tar, sum_run = 0, count_paths = dict()):
     """
     Args:
-    - TreeNode root
-    - int sum_tar
+    - TreeNode node: node of a tree
+    - int sum_tar: sum of the target path
+    - int sum_run: sum of the running range
+    - dictionary<int, int> count_paths: map from paths sum to count
 
     Returns:
-    - int sum of paths
-    """
-    if root is None:
-        return 0
-
-    # Count pats with sum starting from the root node
-    paths_from_root = count_paths_with_sum_from_node(root, sum_tar, 0)
-    # Try the nodes on the left and right
-    paths_on_left = count_paths_with_sum(root.left, sum_tar)
-    paths_on_right = count_paths_with_sum(root.right, sum_tar)
-
-    return paths_from_root + paths_on_left + paths_on_right
-
-def count_paths_with_sum_from_node(node, sum_tar, sum_cur):
-    """
-    Args:
-    - TreeNode node : starting node
-    - int sum_tar : target sum
-    - int sum_cur : current sum
-
-    Returns
-    - int paths_total : sum of total paths
+    - int: 
     """
     if node is None:
         return 0
 
-    sum_cur += node.data
+    sum_run += node.data
 
-    paths_total = 0
-    if sum_cur == sum_tar:
+    # Count paths with sum ending at the current node
+    sum_ = sum_run - sum_tar
+    paths_total = count_paths.get(sum_, 0)
+
+    # If sum_run equals sum_tar, one additional path starts at root. Add in this path
+    if sum_run == sum_tar:
         paths_total += 1
 
-    paths_total += count_paths_with_sum_from_node(node.left, sum_tar, sum_cur)
-    paths_total += count_paths_with_sum_from_node(node.right, sum_tar, sum_cur)
+    # Add sum_run to count_paths
+    count_paths = increment_hashtable(count_paths, sum_run, 1)
 
+    # Count paths with sum on the left and right
+    paths_total += count_paths_with_sum(node.left, sum_tar, sum_run, count_paths)
+    paths_total += count_paths_with_sum(node.right, sum_tar, sum_run, count_paths)
+
+    count_paths = increment_hashtable(count_paths, sum_run, -1)
     return paths_total
+
+def increment_hashtable(hashtable, key, delta):
+    """
+    Increment the hash value specified by the given key
+
+    Args:
+    - dictionary<int, int> hashtable
+    - int key: hashkey
+    - int delta: increment value
+
+    Returns:
+    - dictionary<int, int>: incremented hashtable
+    """
+    count_new = hashtable.get(key, 0) + delta
+    if count_new == 0 and key in hashtable.keys():
+        # Remove if the value equals 0 to redume space usage
+        hashtable.pop(key)
+    else:
+        hashtable[key] = count_new
+        
+    return hashtable
 
 
 if __name__ == '__main__':
