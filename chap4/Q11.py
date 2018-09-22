@@ -1,8 +1,7 @@
 import os, sys
 sys.path.append(os.pardir)
 import random
-import utils
-import tree
+from utils.tree import TreeNode
 
 
 class Tree:
@@ -25,7 +24,7 @@ class Tree:
             self.root.insert_in_order(value)
         
 
-class TreeNode(tree.TreeNode):
+class TreeNode(TreeNode):
     def __init__(self, data):
         super().__init__(data)
 
@@ -53,7 +52,7 @@ class TreeNode(tree.TreeNode):
 
 if __name__ == '__main__':
     counts = [0]*10
-    for i in range(10**6):
+    for i in range(10**5):
         t = Tree()
         array = [1, 0, 6, 2, 3, 9, 4, 5, 8, 7]
         for x in array:

@@ -1,5 +1,5 @@
 from collections import deque
-from tree import TreeNode
+from .tree import TreeNode
 
 def create_tree_from_array(array):
     """

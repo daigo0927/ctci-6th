@@ -1,6 +1,7 @@
 import os, sys
 sys.path.append(os.pardir)
-import utils
+from utils.misc import create_tree_from_array
+
 
 def contains_tree(tree1, tree2):
     """
@@ -27,8 +28,8 @@ if __name__ == '__main__':
     array1 = [1, 2, 1, 3, 1, 1, 5]
     array2 = [2, 3, 1]
     
-    tree1 = utils.create_tree_from_array(array1)
-    tree2 = utils.create_tree_from_array(array2)
+    tree1 = create_tree_from_array(array1)
+    tree2 = create_tree_from_array(array2)
 
     if contains_tree(tree1, tree2):
         print('tree2 is a subtree of tree1')
@@ -36,7 +37,7 @@ if __name__ == '__main__':
         print('tree2 is not a subtree of tree1')
 
     array3 = [1, 2, 3]
-    tree3 = utils.create_tree_from_array(array3)
+    tree3 = create_tree_from_array(array3)
     if contains_tree(tree1, tree3):
         print('tree3 is a subtree of tree1')
     else:

@@ -1,4 +1,6 @@
-import linkedlist2 as ll2
+import os, sys
+sys.path.append(os.pardir)
+from utils.linkedlist import LinkedList
 
 def search(llist):
     fast = llist.head
@@ -24,7 +26,7 @@ def search(llist):
 
 if __name__ == '__main__':
     # create looping linkedlist
-    llist = ll2.LinkedList()
+    llist = LinkedList()
     llist.append_all([0, 9, 1, 8])
     loop_head = llist.tail
     llist.append_all([2, 4, 7, 3, 5, 6])

@@ -1,9 +1,11 @@
-import linkedlist2 as ll2
+import os, sys
+sys.path.append(os.pardir)
+from utils.linkedlist import LinkedList
 
 
 def solve(llist_1, llist_2):
     n1, n2 = llist_1.head, llist_2.head
-    llist_ans = ll2.LinkedList()
+    llist_ans = LinkedList()
     carry = 0
     while n1 is not None or n2 is not None:
         result = carry
@@ -31,7 +33,7 @@ def solve2(llist_1, llist_2):
             llist_1.pad_head()
 
     n1, n2 = llist_1.head, llist_2.head
-    llist_ans = ll2.LinkedList()
+    llist_ans = LinkedList()
     result = 0
     while n1 is not None and n2 is not None:
         result = 10*result+n1.value+n2.value
@@ -45,12 +47,12 @@ def solve2(llist_1, llist_2):
 
 
 if __name__ == '__main__':
-    llist_1, llist_2 = ll2.LinkedList(), ll2.LinkedList()
+    llist_1, llist_2 = LinkedList(), LinkedList()
     llist_1.append_all([7, 1, 6])
     llist_2.append_all([5, 9, 2])
     solve(llist_1, llist_2)
 
-    llist_1, llist_2 = ll2.LinkedList(), ll2.LinkedList()
+    llist_1, llist_2 = LinkedList(), LinkedList()
     llist_1.append_all([1, 2, 3, 4])
     llist_2.append_all([5, 6, 7])
     solve2(llist_1, llist_2)

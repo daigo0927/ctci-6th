@@ -1,6 +1,6 @@
 import os, sys
 sys.path.append(os.pardir)
-from tree import TreeNode
+from utils.tree import TreeNode
 
 def count_paths_with_sum(node, sum_tar, sum_run = 0, count_paths = dict()):
     """

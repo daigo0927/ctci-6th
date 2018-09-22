@@ -1,4 +1,7 @@
-import linkedlist2 as ll2
+import os, sys
+sys.path.append(os.pardir)
+from utils.linkedlist import LinkedList
+
 
 def is_palindrome(llist):
     # runner technique, method2
@@ -28,7 +31,7 @@ if __name__ == '__main__':
              [1,1, 2, 2, 1, 1]]
     
     for case in cases:
-        llist = ll2.LinkedList()
+        llist = LinkedList()
         llist.append_all(case)
         ans = is_palindrome(llist)
         print(f'{str(llist)} is palindrome? : {ans}')
